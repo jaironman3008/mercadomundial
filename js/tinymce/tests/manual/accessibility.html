@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Accessibility test</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<script src="../../js/tinymce/tinymce.dev.js"></script>
+<script src="../../js/tinymce/tinymceInit.js"></script>
+<script src="../../js/tinymce/plugins/table/plugin.dev.js"></script>
+<script src="../../js/tinymce/plugins/paste/plugin.dev.js"></script>
+<script src="../../js/tinymce/plugins/spellchecker/plugin.dev.js"></script>
+<style>
+*:focus {
+	outline: 1px solid red !important;
+}
+</style>
+</head>
+<body>
+
+<form method="post" action="http://www.tinymce.com/dump.php?example=true">
+	<textarea id="elm1" name="elm1" rows="15" cols="80" style="width: 80%">&lt;p&gt;&lt;b&gt;&lt;i&gt;Content&lt;/i&gt;&lt;/b&gt;&lt;/p&gt;</textarea>
+
+	<input type="submit" name="save" value="Submit" />
+	<input type="reset" name="reset" value="Reset" />
+</form>
+
+</body>
+</html>

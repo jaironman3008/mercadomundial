@@ -1,0 +1,249 @@
+body{
+	margin:1% auto; 
+	width:1000px; 
+	text-align:center; 
+	color: #4E4E4E;	
+	background-color:#FBFBFB;
+	font-family: "Microsoft Sans Serif";	
+}
+td{
+	
+	font-size:12px;
+	padding:0px 5px 0px 5px;
+	background-color:#fbfbfb;
+	border-radius:10px;	
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	box-shadow: 5px 5px 12px #888888;
+	-moz-box-shadow: 5px 5px 20px #888888;
+	-webkit-box-shadow: 5px 5px 20px #888888;
+}/*
+input[type=submit]{
+	border:1px solid #c62828;
+	background:#aa2828;
+	color: #e3e3e3;
+	padding: .5em;
+	cursor:pointer;
+}
+input[type=submit]:hover{
+	background:#9a2222;
+}*/
+input[type=text]{
+	border:0px; 
+	background-color:#FBFBFB;
+	margin-left:10px
+}
+input[type=email]{
+	border:0px; 
+	background-color:#FBFBFB;
+	margin-left:10px
+}
+
+input[type=password]{
+	border:0px; 
+	background-color:#FBFBFB;
+	margin-left:10px
+}
+input[type=file]{	
+	background-color:#FBFBFB;
+	margin-left:10px
+}
+input[type=number]{	
+	background-color:#FBFBFB;
+	margin-left:10px
+}
+select{
+	border:0px; 
+	background-color:#FBFBFB;
+	margin-left:10px
+}
+textarea{
+	border:0px; 
+	background-color:#FBFBFB;
+	margin-left:10px
+}
+/********************************************************************NAVEGADOR*/
+
+#navegador{
+			background-color:#FBFBFB;						
+			border: 4px #4E4E4E; 
+			border-radius: 15px;
+			width:95%;
+			height:auto;							
+			box-shadow: 00px 10px 20px #888888;
+			-moz-box-shadow: 00px 10px 30px #888888;
+			-webkit-box-shadow: 00px 10px 30px #888888; 			
+			margin: 35px auto 50px auto;
+			padding:15px
+}
+#navegador font{font-weight: bold;
+			font-size: 15px;
+			
+}
+#navegador a{
+			font-weight: bold;
+			font-size: 15px;
+			
+}
+#banner{
+	/*	margin: 0px auto 50px 0px;*/
+		width:960px;
+		height:360px;		
+		border-radius:15px;
+		box-shadow: 20px 20px 40px #888888;
+		-moz-box-shadow: 20px 20px 40px #888888;
+		-webkit-box-shadow: 20px 20px 40px #888888; 		
+		margin: 00px auto 10px auto;
+}
+					
+/*************************************************************************LEFT*/
+
+#left{
+	float:left;	
+	width: 20%;
+	height: 70%;
+	padding-top: 0px}
+	
+
+/********************************************************************CONTENIDO*/
+
+#contenido{
+			float: left;
+			width: 60%;
+			height: 60%;
+			padding: 0px;
+			margin: 0px 0px 20px 0px;
+			border:0px;
+			overflow:auto;
+			height:500px;			
+}
+
+#contenido p{
+			font-size: 13px; 			
+			text-align: justify}
+#contenido font{
+			font-size: 10px; 
+			font-weight: bold;
+			margin-left:10px}
+#contenido .preguntas-frecuentes li{
+	cursor: pointer;
+	margin:5px 0px 0px 5px;
+	text-align:left;
+	font-size: 13px;
+	font-weight: bold;	
+}
+#contenido .preguntas-frecuentes li:hover{
+	color: #9B9B9B;
+	text-decoration: underline
+}
+
+/************************************************************terminos de uso*/
+#texto{
+		overflow:auto;
+		height:350px;
+	}
+#terminosDeUso td{ 
+		border-radius:10px;	
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	box-shadow: 5px 5px 12px #888888;
+	-moz-box-shadow: 5px 5px 20px #888888;
+	-webkit-box-shadow: 5px 5px 20px #888888;  
+}
+#terminosDeUso p{
+			font-size: 13px;			
+			text-align: justify;
+			margin: 8px}
+
+#grafica img{
+	border-radius:20px;
+	box-shadow: 5px 5px 10px #888888;		 
+	-moz-box-shadow: 5px 5px 20px #888888;
+	-webkit-box-shadow: 5px 5px 20px #888888;
+}
+/************************************************************************RIGHT*/
+
+#right{
+		float: right; 		
+		width: 20%;
+		height: 70%;
+		padding-top: 0px
+}
+#right a{
+		 
+		font-size:12px
+}
+#right .tablahead h2{
+	cursor: pointer;
+}
+/**************************************************************************PIE*/
+
+#pie{
+	width: 100%; 
+	margin-top: 500px
+}
+							
+/***********************************************************************ENLACES*/
+		
+a{ 
+	color: #4E4E4E;
+	text-decoration: none;
+	font-size:12px;
+}
+a:hover{
+	color: #9B9B9B;
+	text-decoration: underline
+}
+/**********************************************************************TITULOS*/
+
+h1{
+	font-size:25px; 
+	margin: 0px 6px 0px 6px; 
+	padding: 4px 0px 4px 18px;		
+	text-align: left;		
+}
+h2{	
+	font-size:15px; 
+	margin: 0px 6px 0px 6px; 
+	padding: 0px auto 0px auto;		
+	text-align: center;
+
+}
+
+/***************************************************************ALGUNAS CLASES*/
+.notify{
+ width: 250px;
+}
+.menu{
+	font-weight: bold;
+	font-size: 16px;
+	color: white
+}
+
+.form{
+	font-size: 13px; 
+	font-weight: 100;
+	color: white
+}
+.mostrardatos{
+			font-size: 13px; 
+			font-weight: none;
+			color: white;
+			text-align:center
+}
+.tablahead td{
+	background-color: #e7e7e7;
+	height:28px;
+	font-weight:bold; 
+	font-size:11px;
+	text-align:center;
+}
+.ventana{
+	display:none; 
+	font-family:Arial, Helvetica, sans-serif;
+	color:#808080;
+	line-height:28px;
+	font-size:15px;
+	text-align:justify;
+}
+

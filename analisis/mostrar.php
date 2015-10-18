@@ -1,0 +1,1 @@
+<img src="<? include_once('classgrafico.php');?>" width="400" height="360"/>
