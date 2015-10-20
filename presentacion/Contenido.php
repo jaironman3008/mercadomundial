@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('Login.php');
 include_once('Inicio.php');
 

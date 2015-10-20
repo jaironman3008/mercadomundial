@@ -1,4 +1,4 @@
-<?
+<?php
 @include_once('DBManager.php');        		
 include_once('classUsuario.php');
 
@@ -25,7 +25,7 @@ class UserControl{
 		
 	}
 	public function logueo(){		
-		
+		// var_dump('toc toc');exit;
 		$usuarioyestado=$this->usuario->selectusuarios($this->user);
 		$passycargo=$this->usuario->password($this->user, $this->passMd5);
 		
@@ -36,6 +36,7 @@ class UserControl{
 			else{//usuario activo
 				
 				if(count($passycargo) == 1){//usuario y contraseña correcto
+				
 					switch($usuarioyestado[0]['revisado']){
 						case'no':
 							echo"<script>						

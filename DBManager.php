@@ -2,9 +2,9 @@
 class Conectar
 {
 	const host='localhost';
-	const username='ivpxdtjy';
-	const passwd='X1svlR3g23';
-    const dbName='ivpxdtjy_dbMercadoMundial';
+	const username='root';
+	const passwd='';
+    const dbName='mercadomundial';
 
 	public function con()
 	{

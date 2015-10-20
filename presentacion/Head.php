@@ -1,5 +1,5 @@
-<?
-include_once('mensajes/notificaciones.php');
+<?php
+include('mensajes/notificaciones.php');
 
 class Head{
 	

@@ -1,4 +1,4 @@
-<?
+<?php
 class Navegador{
 
 	private $rolUsuario;

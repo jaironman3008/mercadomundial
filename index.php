@@ -1,4 +1,4 @@
-<?php  
+<?php
 include_once('usuarios/usercontrol.php');
 include_once('presentacion/Banner.php');
 include_once('presentacion/Navegador.php');
@@ -6,7 +6,6 @@ include_once('presentacion/Head.php');
 include_once('presentacion/Contenido.php');
 
 class Index{
-	
 	private $head;
 	private $contenido;
 	private $banner;
@@ -29,7 +28,6 @@ class Index{
 	}
 		
 	public function main(){			
-		
 		if (isset($_POST['grabar']) and $_POST['grabar']=='si')
 		{			
 			$this->userControl->logueo();	
