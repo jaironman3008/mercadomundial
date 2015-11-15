@@ -1,5 +1,5 @@
-<?
-session_start();
+<?php
+// session_start();
 class LogSalir{
 	public function Salir(){
 		$_SESSION = array();

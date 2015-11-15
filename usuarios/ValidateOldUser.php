@@ -1,6 +1,6 @@
-<?
+<?php
 include_once('classUsuario.php');
-session_start();
+// session_start();
 class ValidateOldUser{
 	
 	private $usuario;

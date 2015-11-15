@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('../presentacion/ValidarForm.php');
 include_once('ArticuloDominio.php');
 
@@ -10,8 +10,8 @@ class FrmNuevoArticulo{
 	private $curUser;
 	
 	public function __construct(){
-		$this->categoria=$_POST['vista'];
-		$this->curUser=$_POST['curUser'];
+		$this->categoria=isset($_POST['vista'])?$_POST['vista']:"";
+		$this->curUser=isset($_POST['curUser'])?$_POST['curUser']:"";
 		$this->validarForm=new validarForm();
 		$this->articuloDominio=new ArticuloDominio();
 	}

@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('MensajeDominio.php');
 
 class Notificacion{
@@ -24,7 +24,7 @@ class Notificacion{
 		$retornar.="class_name: 'gritter-light'";
 		$retornar.="});	";
 				
-		$sinLeer=$this->mensajeDominio->selectMisMensajes($_SESSION['usuarioactual'],'recibidos');
+		$sinLeer=$this->mensajeDominio->selectMisMensajes(isset($_SESSION['usuarioactual'])?$_SESSION['usuarioactual']:"",'recibidos');
 		
 		$total=0;
 		for($i=0;$i<count($sinLeer);$i++){

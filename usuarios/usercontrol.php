@@ -14,18 +14,17 @@ class UserControl{
 	
 	
 	public function __construct(){	
-	
 		$this->usuario=new classUsuario();
 		$this->conectar=new Conectar();
 		$this->mysqli=$this->conectar->con();
-		$this->user=$_POST['usuario'];
-		$this->pass=$_POST['password'];
+		$this->user=isset($_POST['usuario'])?$_POST['usuario']:"";
+		$this->pass=isset($_POST['password'])?$_POST['password']:"";
 		$this->passMd5=md5($this->pass);
 		$this->listaCobros=array();		
 		
 	}
 	public function logueo(){		
-		// var_dump('toc toc');exit;
+		
 		$usuarioyestado=$this->usuario->selectusuarios($this->user);
 		$passycargo=$this->usuario->password($this->user, $this->passMd5);
 		
@@ -51,17 +50,16 @@ class UserControl{
 						case'aceptado':
 							if($usuarioyestado[0]['rol']!='usuario')
 							$this->conectar->insertbitacora('Inicio de sesion',$this->user,'');
-														
-							session_start();
+							// session_start(); 
+							// echo "<pre>";var_dump($_POST,$_SESSION);exit;
 							$_SESSION["autentica"] = 'SIP';
 							$_SESSION["usuarioactual"] = $usuarioyestado[0]['usuario'];
 							$_SESSION["idusuarioactual"] = $usuarioyestado[0]['idusuario'];
 							$_SESSION["rolusuario"] = $passycargo[0]['rol'];
 							$_SESSION["ultimoacceso"]= date("Y-n-j H:i:s");
-							echo"<script>						
-									location.reload();
+							echo"<script>	
+									window.location.href = 'index.php';					
 								</script>";
-							//header("Location: index.php");
 							break;
 					}					
 				}

@@ -7,14 +7,14 @@ class Navegador{
 	private $autentica;
 	
 	public function __construct(){
-		$this->rolUsuario=$_SESSION['rolusuario'];
-		$this->usuarioActual=$_SESSION['usuarioactual'];
-		$this->idUsuarioActual=$_SESSION['idusuarioactual'];
-		$this->autentica=$_SESSION["autentica"];
+		$this->rolUsuario=isset($_SESSION['rolusuario'])?$_SESSION['rolusuario']:"";
+		$this->usuarioActual=isset($_SESSION['usuarioactual'])?$_SESSION['usuarioactual']:"";
+		$this->idUsuarioActual=isset($_SESSION['idusuarioactual'])?$_SESSION['idusuarioactual']:"";
+		$this->autentica=isset($_SESSION["autentica"])?$_SESSION["autentica"]:"";
 	}
 	
 	public function imprimirNavegador(){
-			
+			$retornar="";
 		if( $this->autentica== "SIP"){
 			$retornar="<div id='navegador'>";
 			$retornar.="<a id='linkInicio' href='javascript: void()'>Inicio </a>.::.						
@@ -28,7 +28,7 @@ class Navegador{
 			$retornar.="</div>";
 			
 		}
-		else$retornar.="<br>";
+		else $retornar.="<br>";
 		return $retornar;
 	}	
 }

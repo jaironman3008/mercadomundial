@@ -1,5 +1,5 @@
-<?
-session_start();
+<?php
+// session_start();
 @include_once('../DBManager.php');
 
 class Articulo{
@@ -93,30 +93,30 @@ class Articulo{
 	}
 	public function getArticulos($registrosAEmpezar='',$registrosAMostrar='', $vista=''){
 	
-		
-			switch($vista){
-				case 'ofertas' : $filtro="and oferta > 0";break;
-				case 'subastas' : $filtro="and subasta > 0";break;
-				case 'recienPublicados' : $filtro="and DATE_SUB(CURDATE(),INTERVAL 7 DAY) <= a.fechareg";break;				
-				default: $filtro="and categoria='$vista'";
+		$resp=array();		
+		switch($vista){
+			case 'ofertas' : $filtro="and oferta > 0";break;
+			case 'subastas' : $filtro="and subasta > 0";break;
+			case 'recienPublicados' : $filtro="and DATE_SUB(CURDATE(),INTERVAL 7 DAY) <= a.fechareg";break;				
+			default: $filtro="and categoria='$vista'";
+		}
+		$query="select idarticulo, descripcion, categoria, precio, oferta, img, idusuario, estado, a.fechareg, a.horareg, subasta 
+				from articulos a, categoriaarticulos c
+				where a.idcategoria=c.idcategoria and estado!='vendido' and estado!='inactivo' and revisado='aceptado' $filtro limit $registrosAEmpezar, $registrosAMostrar";
+		$result = $this->mysqli->query($query);
+		if(!$result)
+			return false;
+		else{
+			while ($reg = $result->fetch_assoc()) {
+				$resp[]=$reg;
 			}
-			$query="select idarticulo, descripcion, categoria, precio, oferta, img, idusuario, estado, a.fechareg, a.horareg, subasta 
-					from articulos a, categoriaarticulos c
-					where a.idcategoria=c.idcategoria and estado!='vendido' and estado!='inactivo' and revisado='aceptado' $filtro limit $registrosAEmpezar, $registrosAMostrar";
-			$result = $this->mysqli->query($query);
-			if(!$result)
-				return false;
-			else{
-				while ($reg = $result->fetch_assoc()) {
-					$resp[]=$reg;
-				}
-				return $resp;
-			}
+			return $resp;
+		}
 		
 	}
 	public function getCountArticulos($vista=''){
 	
-										
+			$resp=array();			
 			switch($vista){
 				case 'ofertas' : $filtro="and oferta > 0";break;
 				case 'subastas' : $filtro="and subasta > 0";break;
@@ -172,6 +172,12 @@ class Articulo{
 	}
 	
 	public function getCountMisArticulos($vista=''){//same function in classUsuario
+	
+	// if(is_numeric($vista)){
+// 		
+	// }
+// 	
+	var_dump($vista);
 	list($vista,$check)=split('[/.-]',$vista);
 		if($check=='revisar'){
 			$check="a.revisadopor";
@@ -205,7 +211,7 @@ class Articulo{
 		
 	}
 	public function getUsuario($id){
-		
+			$resp=array();
 			$query="select * from usuarios
 					where idusuario='$id'";
 			$result = $this->mysqli->query($query);

@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('Articulo.php');
 
 class VistaArticulo{
@@ -25,13 +25,13 @@ class VistaArticulo{
 	
 	public function __construct(){
 	
-		$this->vista=$_POST['vista'];
-		$this->rolUsuario=$_POST['rolUsuario'];
-		$this->contador=$_POST['contadorDeVisitas'];
+		$this->vista=isset($_POST['vista'])?$_POST['vista']:"";
+		$this->rolUsuario=isset($_POST['rolUsuario'])?$_POST['rolUsuario']:"";
+		$this->contador=isset($_POST['contadorDeVisitas'])?$_POST['contadorDeVisitas']:"";
 		$this->articulo=new Articulo();	
 		$this->articulo2=new Articulo();
 		$this->articulo3=new Articulo();		
-		$this->pag=$_GET['pag'];
+		$this->pag=isset($_GET['pag'])?$_GET['pag']:"";
 		$this->registrosAMostrar=2;
 		
 	}
@@ -42,7 +42,7 @@ class VistaArticulo{
 		
 		if(!isset($this->vista))$this->vista=$_GET['vista'];
 		if(isset($this->pag)){
-			$this->registrosAEmpezar=($this->pag-1)*$this->registrosAMostrar;
+			$this->registrosAEmpezar=($this->pag)*$this->registrosAMostrar;//echo "<pre>";var_dump($this->pag,$this->registrosAEmpezar);exit;
 			$this->pagAct=$this->pag;		
 		}else{
 			$this->registrosAEmpezar=0;
@@ -57,15 +57,16 @@ class VistaArticulo{
 		if($this->res>0) $this->pagUlt=floor($this->pagUlt)+1;
 		
 		
-		
+		$tabla="";
 		$tabla.="<table width='95%' align='center' id='result'>
 				<tr class='tablahead'>
 					<td colspan='3'><h1>".$this->vista."</h1>";
 		if($this->vista!='ofertas' && $this->vista!='subastas' && $this->vista!='recienPublicados' && $this->rolUsuario=='usuario'){
-			$tabla.="<a href='javascript:void()' onclick=\"openFrmNuevoArticulo('".$this->vista."')\"> Publicar en esta categoria</a>";
+			$tabla.="<a href='javascript:void(0)' onclick=\"openFrmNuevoArticulo('".$this->vista."')\"> Publicar en esta categoria</a>";
 		}
 		$tabla.="</td>
 				</tr>";		
+		
 		if(count($this->lista)>0){			
 			for($i=0;$i<count($this->lista);$i++){
 				$this->usuario=$this->articulo->getUsuario($this->lista[$i]['idusuario']);
@@ -77,7 +78,7 @@ class VistaArticulo{
 							if($this->lista[$i]['subasta']>0){
 								$tabla.="<h2>ESTE ARTICULO SE ESTA SUBASTANDO</h2>";
 								$tabla.="<font>OFERTA MINIMA: </font>".$this->lista[$i]['subasta']." Bs.<br>";
-								$tabla.="<font><a href='javascript:void()' id='linkOfertar'>OFERTAR</a></font><br>";
+								$tabla.="<font><a href='javascript:void(0)' id='linkOfertar'>OFERTAR</a></font><br>";
 							}
 							else{
 								if($this->lista[$i]['oferta']>0){
@@ -92,7 +93,7 @@ class VistaArticulo{
 								<font>PUBLICADO POR EL USUARIO: </font>".$this->usuario[0]['usuario']."<br>
 								<font>FECHA DE PUBLICACIÓN: </font>".$this->lista[$i]['fechareg']." ".$this->lista[$i]['horareg']."<br>";
 								if($this->rolUsuario=='usuario'){
-									$tabla.="<font><a href='javascript:void()' id='va-send-msg' data-categoria='".$this->lista[$i]['categoria']."' data-id='".$this->lista[$i]['idarticulo']."'>Enviar mensaje</a><br></font>";
+									$tabla.="<font><a href='javascript:void(0)' id='va-send-msg' data-categoria='".$this->lista[$i]['categoria']."' data-id='".$this->lista[$i]['idarticulo']."'>Enviar mensaje</a><br></font>";
 								}
 								$tabla.="<!--<font><a href='#'>Este articulo no pertenece a esta categoria</a></font>-->
 							</td>";
@@ -108,11 +109,11 @@ class VistaArticulo{
 		$tabla.="<tr class='tablaconten'>
 					<td colspan='3' align='center'>
 						<font>
-							<a href='javascript: void();' onclick=\"pagina(1,'VistaArticulo','".$this->vista."')\">PRIMERO</a>";
-							if ($this->pagAct>1){$tabla.="<a href='javascript: void();' onclick=\"pagina('".$this->pagAnt."','VistaArticulo','".$this->vista."')\"> ANTERIOR </a>";}
+							<a href='javascript: void(0);' onclick=\"pagina(1,'VistaArticulo','".$this->vista."')\">PRIMERO</a>";
+							if ($this->pagAct>1){$tabla.="<a href='javascript: void(0);' onclick=\"pagina('".$this->pagAnt."','VistaArticulo','".$this->vista."')\"> ANTERIOR </a>";}
 							$tabla.="<i> Pagina ".$this->pagAct."/".$this->pagUlt." </i>";
-							if ($this->pagAct<$this->pagUlt){$tabla.="<a href='javascript: void();' onclick=\"pagina('".$this->pagSig."','VistaArticulo','".$this->vista."')\">SIGUIENTE </a>";}
-							$tabla.="<a href='javascript: void();' onclick=\"pagina('".$this->pagUlt."','VistaArticulo','".$this->vista."')\">ULTIMO</a>
+							if ($this->pagAct<$this->pagUlt){$tabla.="<a href='javascript: void(0);' onclick=\"pagina('".$this->pagSig."','VistaArticulo','".$this->vista."')\">SIGUIENTE </a>";}
+							$tabla.="<a href='javascript: void(0);' onclick=\"pagina('".$this->pagUlt."','VistaArticulo','".$this->vista."')\">ULTIMO</a>
 						</font>
 					</td>
 				</tr>";

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('usuarios/usercontrol.php');
 include_once('presentacion/Banner.php');
 include_once('presentacion/Navegador.php');
@@ -23,13 +24,12 @@ class Index{
 		$this->userControl=new UserControl();
 		$this->srcImg1='images/banner/images/';
 		$this->srcImg2='images/banner/tooltips/';
-		$this->view=$vista;
 		
 	}
 		
 	public function main(){			
 		if (isset($_POST['grabar']) and $_POST['grabar']=='si')
-		{			
+		{
 			$this->userControl->logueo();	
 			
 		}

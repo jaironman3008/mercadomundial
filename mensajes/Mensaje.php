@@ -1,6 +1,5 @@
-<?
+<?php
 @include_once('../DBManager.php');
-
 
 class Mensaje{
 	
@@ -116,7 +115,6 @@ class Mensaje{
 	}
 	public function selectMisMensajes($usuario,$tipo){
 		
-		
 			if($tipo=='enviados')$direccion='idSendFrom';
 			elseif($tipo=='recibidos') $direccion='idSendTo';
 			$idSendTo=self::getUsuario($usuario);
@@ -176,6 +174,7 @@ class Mensaje{
 		
 			$query="select * from usuarios	where usuario='$usuario'";
 			$result = $this->mysqli->query($query);
+			$resp=array();
 			if(!$result)
 				return false;
 			else{

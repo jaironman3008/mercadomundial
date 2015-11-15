@@ -1,5 +1,5 @@
-<?
-session_start();
+<?php
+// session_start();
 include_once('classUsuario.php');
 class VistaMisInvitados{
 	public function __construct(){

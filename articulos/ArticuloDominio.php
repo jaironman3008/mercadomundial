@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('Articulo.php');
 include_once('PaqueteArticuloDominio.php');
 @include_once('../mensajes/MensajeDominio.php');
@@ -36,23 +36,23 @@ class ArticuloDominio{
 		$this->paqueteArticuloDominio = new PaqueteArticuloDominio();
 		$this->paqueteArticuloDominio2 = new PaqueteArticuloDominio();
 		$this->mensaje=new Mensaje();
-		$this->curUser=$_POST['curUser'];
+		$this->curUser=isset($_POST['curUser'])?$_POST['curUser']:"";
 		$this->opcion=$sw;
-		$this->descripcion=$_POST['descripcion'];
-		$this->categoria=$_POST['categoria'];
-		$this->precio=$_POST['precio'];
-		$this->usuario=$_POST['usuario'];
-		$this->estado=$_POST['estado'];
-		$this->ubicacion=$_POST['ubicacion'];
-		$this->moneda=$_POST['moneda'];
-		$this->oferta=$_POST['oferta'];
-		$this->subasta=$_POST['subastar'];
-		$this->img=$_FILES['archivo']['name'];
-		$this->imgTemp=$_FILES['archivo']['tmp_name'];
-		$this->idArticulo=$_POST['idArticulo'];
-		$this->idArticuloRevisado=$_POST['idArticuloRevisado'];
-		$this->respuestaRevision=$_POST['respuestaRevision'];
-		$this->sugerenciaRevision=$_POST['sugerenciaRevision'];
+		$this->descripcion=isset($_POST['descripcion'])?$_POST['descripcion']:"";
+		$this->categoria=isset($_POST['categoria'])?$_POST['categoria']:"";
+		$this->precio=isset($_POST['precio'])?$_POST['precio']:"";
+		$this->usuario=isset($_POST['usuario'])?$_POST['usuario']:"";
+		$this->estado=isset($_POST['estado'])?$_POST['estado']:"";
+		$this->ubicacion=isset($_POST['ubicacion'])?$_POST['ubicacion']:"";
+		$this->moneda=isset($_POST['moneda'])?$_POST['moneda']:"";
+		$this->oferta=isset($_POST['oferta'])?$_POST['oferta']:"";
+		$this->subasta=isset($_POST['subastar'])?$_POST['subastar']:"";
+		$this->img=isset($_FILES['archivo']['name'])?$_FILES['archivo']['name']:"";
+		$this->imgTemp=isset($_FILES['archivo']['tmp_name'])?$_FILES['archivo']['tmp_name']:"";
+		$this->idArticulo=isset($_POST['idArticulo'])?$_POST['idArticulo']:"";
+		$this->idArticuloRevisado=isset($_POST['idArticuloRevisado'])?$_POST['idArticuloRevisado']:"";
+		$this->respuestaRevision=isset($_POST['respuestaRevision'])?$_POST['respuestaRevision']:"";
+		$this->sugerenciaRevision=isset($_POST['sugerenciaRevision'])?$_POST['sugerenciaRevision']:"";
 		$this->ruta="../images/".$this->categoria."/";
 		
 	}
@@ -220,5 +220,5 @@ class ArticuloDominio{
 		}
 	}
 }
-$ad=new ArticuloDominio($_POST['opcion']);
+$ad=new ArticuloDominio(isset($_POST['opcion'])?$_POST['opcion']:"");
 $ad->main();

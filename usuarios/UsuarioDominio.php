@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('classUsuario.php');
 include_once('PaqueteUsuarioDominio.php');
 @include_once('../mensajes/MensajeDominio.php');
@@ -45,31 +45,31 @@ class UsuarioDominio{
 		$this->paqueteUsuarioDominio=new PaqueteUsuarioDominio();
 		$this->mensajeDominio=new MensajeDominio();
 		$this->mensaje=new Mensaje();
-		$this->img=$_FILES['archivo']['name'];
-		$this->imgTemp=$_FILES['archivo']['tmp_name'];
+		$this->img=isset($_FILES['archivo']['name'])?$_FILES['archivo']['name']:"";
+		$this->imgTemp=isset($_FILES['archivo']['tmp_name'])?$_FILES['archivo']['tmp_name']:"";
 		$this->opcion=$sw;		
 		$this->ruta='../images/depositos/';
-		$this->idUsuario=$_POST['idUsuario'];
-		$this->user=$_POST['usuario'];
-		$this->nombres=$_POST['nombres'];
-		$this->appaterno=$_POST['appaterno'];
-		$this->apmaterno=$_POST['apmaterno'];
-		$this->ci=$_POST['ci'];
-		$this->expedidoen=$_POST['expedidoen'];
-		$this->pass=$_POST['password'];
-		$this->oldPass=$_POST['oldPass'];
-		$this->newPass=$_POST['newPass'];
-		$this->direccion=$_POST['direccion'];
-		$this->telefonocel=$_POST['telefonocel'];
-		$this->telefonofijo=$_POST['telefonofij'];
-		$this->email=$_POST['email'];
-		$this->numcuenta=$_POST['numcuenta'];
-		$this->rol=$_POST['rol'];
-		$this->estado=$_POST['estado'];
-		$this->curUser=$_POST['curUser'];
-		$this->respuestaRevision=$_POST['respuestaRevision'];
-		$this->idUsuarioRevisado=$_POST['idUsuarioRevisado'];
-		$this->explicacion=$_POST['explicacion'];
+		$this->idUsuario=isset($_POST['idUsuario'])?$_POST['idUsuario']:"";
+		$this->user=isset($_POST['usuario'])?$_POST['usuario']:"";
+		$this->nombres=isset($_POST['nombres'])?$_POST['nombres']:"";
+		$this->appaterno=isset($_POST['appaterno'])?$_POST['appaterno']:"";
+		$this->apmaterno=isset($_POST['apmaterno'])?$_POST['apmaterno']:"";
+		$this->ci=isset($_POST['ci'])?$_POST['ci']:"";
+		$this->expedidoen=isset($_POST['expedidoen'])?$_POST['expedidoen']:"";
+		$this->pass=isset($_POST['password'])?$_POST['password']:"";
+		$this->oldPass=isset($_POST['oldPass'])?$_POST['oldPass']:"";
+		$this->newPass=isset($_POST['newPass'])?$_POST['newPass']:"";
+		$this->direccion=isset($_POST['direccion'])?$_POST['direccion']:"";
+		$this->telefonocel=isset($_POST['telefonocel'])?$_POST['telefonocel']:"";
+		$this->telefonofijo=isset($_POST['telefonofij'])?$_POST['telefonofij']:"";
+		$this->email=isset($_POST['email'])?$_POST['email']:"";
+		$this->numcuenta=isset($_POST['numcuenta'])?$_POST['numcuenta']:"";
+		$this->rol=isset($_POST['rol'])?$_POST['rol']:"";
+		$this->estado=isset($_POST['estado'])?$_POST['estado']:"";
+		$this->curUser=isset($_POST['curUser'])?$_POST['curUser']:"";
+		$this->respuestaRevision=isset($_POST['respuestaRevision'])?$_POST['respuestaRevision']:"";
+		$this->idUsuarioRevisado=isset($_POST['idUsuarioRevisado'])?$_POST['idUsuarioRevisado']:"";
+		$this->explicacion=isset($_POST['explicacion'])?$_POST['explicacion']:"";
 	}
 	
 	public function selectUsuario($dato){
@@ -218,5 +218,5 @@ class UsuarioDominio{
 		}
 	}
 }
-$ud=new UsuarioDominio($_POST['opcion']);
+$ud=new UsuarioDominio(@$_POST['opcion']);
 $ud->main();

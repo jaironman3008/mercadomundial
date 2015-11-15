@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('articulos/Articulo.php');
 include_once('usuarios/UsuarioDominio.php');
 //include_once('TerminosDeUso.php');
@@ -15,8 +15,8 @@ class Inicio{
 		$this->articulo= new Articulo();
 		$this->usuarioDominio=new UsuarioDominio();
 //		$this->terminosDeUso=new TerminosDeUso();
-		$this->usuarioActual=$_SESSION['usuarioactual'];
-		$this->rolUsuario=$_SESSION['rolusuario'];
+		$this->usuarioActual=isset($_SESSION['usuarioactual'])?$_SESSION['usuarioactual']:"";
+		$this->rolUsuario=isset($_SESSION['rolusuario'])?$_SESSION['rolusuario']:"";
 	}
 	
 	public function leftInicio(){
@@ -32,7 +32,7 @@ class Inicio{
 		for($i=0;$i<count($lista);$i++){
 			if($lista[$i]['ver']=='si'){
 			$retornar.="<tr class='tablaconten'>";
-			$retornar.="<td align='center'><a class='VistaArticulo' href='javascript: void()'>".$lista[$i]['categoria']."</a></td>";
+			$retornar.="<td align='center'><a class='VistaArticulo' href='javascript: void(0)'>".$lista[$i]['categoria']."</a></td>";
 			$retornar.="</tr>";	
 			}
 		}	
@@ -48,7 +48,7 @@ class Inicio{
 				
 		$retornar="
 			<div id='contenido'>
-			<!--<a id='sendEmail' href='javascript:void()'>enviar email</a>-->
+			<!--<a id='sendEmail' href='javascript:void(0)'>enviar email</a>-->
 			<h1>Categorias mas visitadas</h1>			
 			<p>Aqui te ofrecemos 3 de nuestras categorias mas visitadas.</p>";
 		$retornar.=self::categoriasMasVisitadas();
@@ -64,7 +64,7 @@ class Inicio{
 		$html="<table align='center' width='40%'>";
 		for($i=0;$i<count($lista);$i++){
 			$html.="<tr class='tablahead'>
-						<td><a class='VistaArticulo' href='javascript: void()'>".$lista[$i]['categoria']."</a></td>
+						<td><a class='VistaArticulo' href='javascript: void(0)'>".$lista[$i]['categoria']."</a></td>
 					</tr>";
 		}
 		$html.="</table align='center'><br>
@@ -93,10 +93,10 @@ class Inicio{
 		<div class='menu1'>
 			<table width='175'>
 			<tr class='tablaconten'>
-			<td align='center'><a class='VistaArticulo' href='javascript: void()'>Ofertas</a></td>
+			<td align='center'><a class='VistaArticulo' href='javascript: void(0)'>Ofertas</a></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><a class='VistaArticulo' href='javascript:void()'>Recien Publicados</a></td>
+			<td align='center'><a class='VistaArticulo' href='javascript:void(0)'>Recien Publicados</a></td>
 			</tr>		
 			</table>
 		</div>
@@ -104,15 +104,15 @@ class Inicio{
 		<div class='menu2'>		
 			<table width='175'>	
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkMiCuenta' href='javascript:void();'>Mi Perfil</a></font></td>
+			<td align='center'><font><a id='linkMiCuenta' href='javascript:void(0);'>Mi Perfil</a></font></td>
 			</tr>			
 			$beneficios
 			$misPublicaciones	
 			<tr class='tablaconten'>
-			<td align='center'><font><a class='linkMisMensajes' href='javascript:void();'>Mensajes recibidos</a></font></td>
+			<td align='center'><font><a class='linkMisMensajes' href='javascript:void(0);'>Mensajes recibidos</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a class='linkMisMensajes' href='javascript:void();'>Mensajes enviados</a></font></td>
+			<td align='center'><font><a class='linkMisMensajes' href='javascript:void(0);'>Mensajes enviados</a></font></td>
 			</tr>
 			$misInvitados
 			</table>
@@ -152,25 +152,25 @@ class Inicio{
 		return $html;
 	}
 	public function administrarWeb(){
-		
+		$retornar="";
 		$retornar.="
 		<table width='175'><tr class='tablahead'><td><h2 onclick=\"abrirMenu(3)\">Administrar Web</h2></td></tr></table>
 		<div class='menu3'>
 			<table width='175'>		
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkBanner' href='javascript:void();'>Banner</a></font></td>
+			<td align='center'><font><a id='linkBanner' href='javascript:void(0);'>Banner</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkCategorias' href='javascript:void();'>Categorias</a></font></td>
+			<td align='center'><font><a id='linkCategorias' href='javascript:void(0);'>Categorias</a></font></td>
 			</tr>		
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkUsuarios' href='javascript:void();'>Usuarios de sistema</a></font></td>
+			<td align='center'><font><a id='linkUsuarios' href='javascript:void(0);'>Usuarios de sistema</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkNuevoAdministrador' href='javascript:void();'>Nuevo Administrador</a></font></td>
+			<td align='center'><font><a id='linkNuevoAdministrador' href='javascript:void(0);'>Nuevo Administrador</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkNuevoContrato' onclick=\"openFrmContrato()\" href='javascript:void();'>Nuevo contrato</a></font></td>
+			<td align='center'><font><a id='linkNuevoContrato' onclick=\"openFrmContrato()\" href='javascript:void(0);'>Nuevo contrato</a></font></td>
 			</tr>
 			</table>
 		</div>";
@@ -179,69 +179,73 @@ class Inicio{
 		
 	}
 	public function estadisticas(){
+		$retornar="";
 		$retornar.="
 		<table width='175'><tr class='tablahead'><td><h2 onclick=\"abrirMenu(4)\">Estadisticas</h2></td></tr></table>
 		<div class='menu4'>
 			<table width='175'>		
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkIncrementoUsuarios' href='javascript:void();'>Incremento de Usuarios</a></font></td>
+			<td align='center'><font><a id='linkIncrementoUsuarios' href='javascript:void(0);'>Incremento de Usuarios</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkIncrementoVentas' href='javascript:void();'>Incremento de Ventas(Cant)</a></font></td>
+			<td align='center'><font><a id='linkIncrementoVentas' href='javascript:void(0);'>Incremento de Ventas(Cant)</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkIncrementoVentasBs' href='javascript:void();'>Incremento de Ventas(Bs)</a></font></td>
+			<td align='center'><font><a id='linkIncrementoVentasBs' href='javascript:void(0);'>Incremento de Ventas(Bs)</a></font></td>
 			</tr>			
 			</table>
 		</div>";
 		return $retornar;
 	}
 	public function administrarPaquetes(){
+		$retornar="";
 		$retornar.="
 		<table width='175'><tr class='tablahead'><td><h2 onclick=\"abrirMenu(5)\">Administrar paquetes</h2></td></tr></table>
 		<div class='menu5'>
 			<table width='175'>			
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkVistaPaquetesUsuario' href='javascript:void();'>Nuevos Usuarios</a></font></td>
+			<td align='center'><font><a id='linkVistaPaquetesUsuario' href='javascript:void(0);'>Nuevos Usuarios</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkVistaPaquetesArticulo' href='javascript:void();'>Nuevos Articulos</a></font></td>
+			<td align='center'><font><a id='linkVistaPaquetesArticulo' href='javascript:void(0);'>Nuevos Articulos</a></font></td>
 			</tr>
 			<!--<tr class='tablaconten'>
-			<td align='center'><font><a id='linkVistaAprobarArtculo' href='javascript:void();'>Nuevas Consultas</a></font></td>
+			<td align='center'><font><a id='linkVistaAprobarArtculo' href='javascript:void(0);'>Nuevas Consultas</a></font></td>
 			</tr>-->
 			</table>
 		</div>";
 		return $retornar;
 	}
 	public function Certificaciones(){
+		$retornar="";	
 		$retornar.="
 		<table width='175'><tr class='tablahead'><td><h2 onclick=\"abrirMenu(6)\">Certificaciones</h2></td></tr></table>
 		<div class='menu6'>
 			<table width='175'>		
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkCertificarUsuarios' href='javascript:void();'>Usuarios</a></font></td>
+			<td align='center'><font><a id='linkCertificarUsuarios' href='javascript:void(0);'>Usuarios</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkCertificarArticulos' href='javascript:void();'>Articulos</a></font></td>
+			<td align='center'><font><a id='linkCertificarArticulos' href='javascript:void(0);'>Articulos</a></font></td>
 			</tr>		
 			<!--<tr class='tablaconten'>
-			<td align='center'><font><a id='linkIncrementoUsuarios' href='javascript:void();'>Consultas</a></font></td>
+			<td align='center'><font><a id='linkIncrementoUsuarios' href='javascript:void(0);'>Consultas</a></font></td>
 			</tr>-->			
 			</table>
 		</div>";
 		return $retornar;
 	}
 	public function backUps(){
+		$retornar="";				
 		$retornar.="
 		<table width='175'><tr class='tablahead'><td><h2 onclick=\"abrirMenu(7)\">Restaurar Sistema</h2></td></tr></table>
 		<div class='menu7'>
 			<table width='175'>		
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkCrearBackUps' href='javascript:void();'>Crear Punto de Restauracion</a></font></td>
+			<td align='center'><font><a id='linkCrearBackUps' href='javascript:void(0);'>Crear Punto de Restauracion</a></font></td>
 			</tr>
 			<tr class='tablaconten'>
-			<td align='center'><font><a id='linkRestaurarBackUps' href='javascript:void();'>Restaurar Sistema</a></font></td>
+			<td align='center'><font><a id='linkRestaurarBackUps' href='javascript:void(0);'>Restaurar Sistema</a></font></td>
 			</tr>			
 			</table>
 		</div>";
@@ -250,17 +254,17 @@ class Inicio{
 	public function rightMenuUsuarios(){
 		$beneficios="
 		<tr class='tablaconten'>
-			<td align='center'><font><a id='linkBeneficiosPorUsuario' href='javascript:void();'>Beneficios por nuevo usuario</a></font></td>
+			<td align='center'><font><a id='linkBeneficiosPorUsuario' href='javascript:void(0);'>Beneficios por nuevo usuario</a></font></td>
 		</tr>
 		";
 		$misPublicaciones="
 		<tr class='tablaconten'>
-			<td align='center'><font><a id='linkMisPublicaciones' href='javascript:void();'>Mis Publicaciones</a></font></td>
+			<td align='center'><font><a id='linkMisPublicaciones' href='javascript:void(0);'>Mis Publicaciones</a></font></td>
 		</tr>
 		";
 		$misInvitados="
 		<tr class='tablaconten'>
-			<td align='center'><font><a id='linkMisInvitados' href='javascript:void();'>Mis Invitados</a></font></td>
+			<td align='center'><font><a id='linkMisInvitados' href='javascript:void(0);'>Mis Invitados</a></font></td>
 		</tr>
 		";
 		

@@ -1,4 +1,4 @@
-<?
+<?php
 class TerminosDeUso{
 	
 	public function imprimirTerminos(){

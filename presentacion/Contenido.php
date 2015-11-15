@@ -1,6 +1,7 @@
 <?php
 include_once('Login.php');
 include_once('Inicio.php');
+include_once('TerminosDeUso.php');
 
 class Contenido{
 
@@ -11,13 +12,13 @@ class Contenido{
 	
 	public function __construct(){	
 		$this->inicio=new Inicio();		
-//		$this->terminosDeUso=new TerminosDeUso();
-		$this->terminos=$term;
+		$this->terminosDeUso=new TerminosDeUso();
+		// $this->terminos=$term;
 	}
 	
 	public function imprimirContenido(){		
-		
-		switch($_SESSION['rolusuario']){
+		$session=isset($_SESSION['rolusuario'])?$_SESSION['rolusuario']:"";
+		switch($session){
 	
 			case 'superadmin': 
 				return $this->inicio->imprimirInicio();

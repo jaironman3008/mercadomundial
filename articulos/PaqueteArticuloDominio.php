@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('PaqueteArticulo.php');
 
 class PaqueteArticuloDominio{
@@ -17,8 +17,8 @@ class PaqueteArticuloDominio{
 		$this->paqueteArticulo3=new PaqueteArticulo();
 		$listaPaquetes=array();
 		$this->opcion=$sw;
-		$this->idPaquete=$_POST['idPaqueteArticulo'];
-		$this->curUser=$_POST['curUser'];
+		$this->idPaquete=isset($_POST['idPaqueteArticulo'])?$_POST['idPaqueteArticulo']:"";
+		$this->curUser=isset($_POST['curUser'])?$_POST['curUser']:"";
 	}
 	public function verPaquetes(){
 		return $this->paqueteArticulo->verPaquetes();
@@ -163,5 +163,5 @@ class PaqueteArticuloDominio{
 		}
 	}
 }
-$pad= new PaqueteArticuloDominio($_POST['opcion']);
+$pad= new PaqueteArticuloDominio(isset($_POST['opcion'])?$_POST['opcion']:"");
 $pad->main();

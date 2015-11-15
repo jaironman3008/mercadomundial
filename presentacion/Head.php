@@ -10,7 +10,7 @@ class Head{
 	}
 	
 	public function imprimirHead(){
-		
+		$head="";		
 		$head.="<head>
 					<title>Mercado Mundial</title>
 					<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
@@ -26,7 +26,8 @@ class Head{
 					<script type='text/javaScript' src='js/js.js'></script>
 					";		
 		$head.="</head>";
-		$head.=$this->notificacion->pushNotificaciones();
+		if(isset($_SESSION['autentica']) and $_SESSION['autentica']=="SIP")
+			$head.=$this->notificacion->pushNotificaciones();
 		return $head;
 	}
 }

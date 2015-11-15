@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('Mensaje.php');
 
 class MensajeDominio{
@@ -125,5 +125,5 @@ class MensajeDominio{
 		}
 	}
 }
-$md=new MensajeDominio($_POST['opcion']);
+$md=new MensajeDominio(isset($_POST['opcion'])?$_POST['opcion']:"");
 $md->ejecutar();

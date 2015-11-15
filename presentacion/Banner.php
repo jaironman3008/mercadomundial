@@ -15,7 +15,7 @@ class Banner{
 		$this->conectar=new Conectar();
 		$this->mysqli=$this->conectar->con();
 		$this->banner=array();		
-		$this->bannerArray=$_POST['ckbox'];
+		$this->bannerArray=isset($_POST['ckbox'])?$_POST['ckbox']:"";
 		$this->listaBanners=array();
 		$this->depositoImg=array();
 		$this->listaCountBanners=array();
@@ -27,7 +27,7 @@ class Banner{
 	
 		$retornar="<div id='banner' align='justify'>";
 		
-		if($_SESSION['autentica']!= 'SIP'){
+		if(!isset($_SESSION['autentica']) || $_SESSION['autentica']!= 'SIP'){
 			$retornar.="<img src='images/bannerindex.png' width='960px' height='360px'>";
 		}
 		else{						

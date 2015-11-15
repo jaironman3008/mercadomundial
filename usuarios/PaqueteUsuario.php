@@ -1,4 +1,4 @@
-<?
+<?php
 @include_once('../DBManager.php');
 
 class PaqueteUsuario{

@@ -1,4 +1,4 @@
-<?
+<?php
 include_once('PaqueteUsuario.php');
 
 class PaqueteUsuarioDominio{
@@ -16,10 +16,10 @@ class PaqueteUsuarioDominio{
 		$this->paqueteUsuario2=new PaqueteUsuario();
 		$this->paqueteUsuario3=new PaqueteUsuario();
 		$listaPaquetes=array();
-		$this->curUser=$_POST['curUser'];
+		$this->curUser=@@$_POST['curUser'];
 		$this->opcion=$sw;
-		$this->idPaquete=$_POST['idPaqueteUsuario'];
-		$this->curUser=$_POST['curUser'];
+		$this->idPaquete=@$_POST['idPaqueteUsuario'];
+		$this->curUser=@$_POST['curUser'];
 	}
 	public function verPaquetes(){
 		return $this->paqueteUsuario->verPaquetes();
@@ -170,5 +170,5 @@ class PaqueteUsuarioDominio{
 		}
 	}
 }
-$pud= new PaqueteUsuarioDominio($_POST['opcion']);
+$pud= new PaqueteUsuarioDominio(@$_POST['opcion']);
 $pud->main();
