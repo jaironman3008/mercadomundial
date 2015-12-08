@@ -1,17 +1,20 @@
 <?php
-include('mensajes/notificaciones.php');
+include ('mensajes/notificaciones.php');
 
-class Head{
-	
+class Head
+{
+
 	private $notificacion;
-	
-	public function __construct(){
-		$this->notificacion=new Notificacion();
+
+	public function __construct()
+	{
+		$this->notificacion = new Notificacion();
 	}
-	
-	public function imprimirHead(){
-		$head="";		
-		$head.="<head>
+
+	public function imprimirHead()
+	{
+		$head = "";
+		$head .= "<head>
 					<title>Mercado Mundial</title>
 					<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
 					<link rel='shortcut icon' type='image/x-icon' href='images/minilogo.ico'>
@@ -24,11 +27,12 @@ class Head{
 					<script type='text/javascript' src='js/jquery.gritter.min.js'></script>
 					<script type='text/javascript' src='js/tinymce/js/tinymce/tinymce.dev.js'></script>					
 					<script type='text/javaScript' src='js/js.js'></script>
-					";		
-		$head.="</head>";
-		if(isset($_SESSION['autentica']) and $_SESSION['autentica']=="SIP")
-			$head.=$this->notificacion->pushNotificaciones();
+					";
+		$head .= "</head>";
+		if (isset($_SESSION['autentica']) and $_SESSION['autentica'] == "SIP")
+			$head .= $this->notificacion->pushNotificaciones();
 		return $head;
 	}
+
 }
 ?>

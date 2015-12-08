@@ -1,16 +1,10 @@
 <?php
-@include_once('../DBManager.php');
+include_once(MAINPATH.'/DBManager.php');
 
-class Mensaje{
-	
-	private $conectar;
-	private $mysqli;
+class Mensaje extends DBManager{
 	
 	public function __construct(){
-	
-		$this->conectar= new Conectar();
-		$this->mysqli=$this->conectar->con();
-		
+		parent::__construct();
 	}
 
 	public function insertMensaje($sendFrom,$sendTo,$asunto,$mensaje){		
@@ -18,7 +12,7 @@ class Mensaje{
 					
 			$query="insert into mensajes(idSendFrom,idSendTo,asunto,mensaje,fecha,hora,estado,tipo)
 					values('".$sendFrom."','".$sendTo."','$asunto','$mensaje',now(),now(),'sin leer','mensaje')";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else 
@@ -28,7 +22,7 @@ class Mensaje{
 	public function getConsultas(){
 		
 			$query="select * from mensajes where tipo='consulta' order by idmensaje desc";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
@@ -44,7 +38,7 @@ class Mensaje{
 			$query="select idusuario, usuario 
 					from  usuarios
 					where usuario!='jair' and rol='superadmin' or rol='admin' order by idusuario asc";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
@@ -84,7 +78,7 @@ class Mensaje{
 			
 			$query="insert into mensajes(idSendFrom,idSendTo,asunto,mensaje,fecha,hora,estado,tipo)
 					values('".$idSendFrom[0]['idusuario']."','".$idSendTo[0]['idusuario']."','CONSULTA','$consulta',now(),now(),'sin leer','consulta')";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			
 			if(!$result)
 				return false;
@@ -102,7 +96,7 @@ class Mensaje{
 					from mensajes m, usuarios u	
 					where 	m.idSendFrom=u.idusuario and deleted=0 and ".$direccion."='".$idSendTo[0]['idusuario']."'
 							order by idmensaje desc limit $RegistrosAEmpezar, $RegistrosAMostrar";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
@@ -121,7 +115,7 @@ class Mensaje{
 			$query="select idmensaje, idSendFrom, usuario, asunto, mensaje, fecha, hora, m.estado
 					from mensajes m, usuarios u	
 					where 	m.idSendFrom=u.idusuario and deleted=0 and ".$direccion."='".$idSendTo[0]['idusuario']."'";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
@@ -137,7 +131,7 @@ class Mensaje{
 			//$message=new Mensaje();			
 			//$idSendTo=$message->getUsuario($curUser);			
 			$query="update mensajes set estado='leido' where idmensaje='$idMensaje'";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else 
@@ -149,7 +143,7 @@ class Mensaje{
 			//$message=new Mensaje();			
 			//$idSendTo=$message->getUsuario($curUser);			
 			$query="update mensajes set deleted=1 where idmensaje='$idMensaje'";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else 
@@ -159,7 +153,7 @@ class Mensaje{
 	public function selectMensaje($idMensaje){
 							
 			$query="select * from mensajes where idmensaje='$idMensaje'";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
@@ -173,7 +167,7 @@ class Mensaje{
 	public function getUsuario($usuario){
 		
 			$query="select * from usuarios	where usuario='$usuario'";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			$resp=array();
 			if(!$result)
 				return false;
@@ -188,7 +182,7 @@ class Mensaje{
 	public function getUsuarioFromId($idUsuario){
 		
 			$query="select * from usuarios	where idusuario='$idUsuario'";
-			$result = $this->mysqli->query($query);
+			$result = $this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{

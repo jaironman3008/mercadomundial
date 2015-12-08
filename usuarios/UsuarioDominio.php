@@ -1,5 +1,5 @@
 <?php
-include_once('classUsuario.php');
+include_once('Usuario.php');
 include_once('PaqueteUsuarioDominio.php');
 @include_once('../mensajes/MensajeDominio.php');
 
@@ -39,9 +39,9 @@ class UsuarioDominio{
 	
 	public function __construct($sw=''){
 	
-		$this->usuario=new classUsuario();
-		$this->usuario2=new classUsuario();
-		$this->usuario3=new classUsuario();
+		$this->usuario=new Usuario();
+		$this->usuario2=new Usuario();
+		$this->usuario3=new Usuario();
 		$this->paqueteUsuarioDominio=new PaqueteUsuarioDominio();
 		$this->mensajeDominio=new MensajeDominio();
 		$this->mensaje=new Mensaje();

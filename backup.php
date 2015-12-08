@@ -1,7 +1,7 @@
 <?php
 // session_start();
-include_once('DBManager.php');
-class Backup{
+include_once(MAINPATH.'/DBManager.php');
+class Backup extends DBManager{
 	
 	private $opcion;
 	private $observacion;
@@ -18,7 +18,7 @@ class Backup{
 		
 	public function __construct($opc=''){
 		
-		$this->conectar = new Conectar();
+		parent::__construct();		
 		$this->dbName='dbtutienda';		
 		$this->opcion=$opc;
 		$this->observacion=$_POST['observacion'];
@@ -85,9 +85,9 @@ class Backup{
 		echo $resumen;		
 	}
 	public function dbtablas(){
-		if($this->conectar->con()==true){//aki colocar el nombre de la base de datos
+		if($this->mySql==true){//aki colocar el nombre de la base de datos
 			$query="show tables  where Tables_in_dbtutienda!='backups'";
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			if(!$result) return false;
 			else{
 				while($reg=mysql_fetch_assoc($result)){
@@ -98,9 +98,9 @@ class Backup{
 		}
 	}
 	public function getbackups(){
-		if($this->conectar->con()==true){
+		if($this->mySql==true){
 				$query="select * from backups order by idbackup desc limit 1";
-				$result=mysql_query($query);
+				$result=$this->mySql->query($query);
 				if(!$result) return false;
 				else{
 					while($reg=mysql_fetch_assoc($result)){
@@ -112,13 +112,13 @@ class Backup{
 	}
     public function backupTables($tables = '*',$detalle,$observacion, $outputDir = '.')
     {
-		if($this->conectar->con()==true){
+		if($this->mySql==true){
 			try
 			{          
 				if($tables == '*')
 				{
 					$tables = array();
-					$result = mysql_query('SHOW TABLES');
+					$result = $this->mySql->query('SHOW TABLES');
 					while($row = mysql_fetch_row($result))
 					{
 						$tables[] = $row[0];
@@ -136,11 +136,11 @@ class Backup{
 				{
 					"<font class='hora'>Backing up ".$table." table...</font>";
 	 
-					$result = mysql_query('SELECT * FROM '.$table);
+					$result = $this->mySql->query('SELECT * FROM '.$table);
 					$numFields = mysql_num_fields($result);
 	 
 					$sql .= 'DROP TABLE IF EXISTS '.$table.';';
-					$row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
+					$row2 = mysql_fetch_row($this->mySql->query('SHOW CREATE TABLE '.$table));
 					$sql.= "\n\n".$row2[1].";\n\n";
 					
 					for ($i = 0; $i < $numFields; $i++)
@@ -194,7 +194,7 @@ class Backup{
             fwrite($handle, $sql);
             fclose($handle);
 			$consulta="insert into backups(filename,fecha,hora,descripcion) value('$name',now(),now(),'$observacion')";
-			$result=mysql_query($consulta);
+			$result=$this->mySql->query($consulta);
         }
         catch (Exception $e)
         {
@@ -206,7 +206,7 @@ class Backup{
     }		
 	public function restaurarbackups($filename){	
 		
-		if($this->conectar->con()==true){
+		if($this->mySql==true){
 			// Temporary variable, used to store current query
 			$templine = '';
 			// Read in entire file
@@ -224,7 +224,7 @@ class Backup{
 				if (substr(trim($line), -1, 1) == ';')
 				{
 					// Perform the query
-					$result=mysql_query($templine);// or print('Error ejecutando consulta \'<strong>' . $templine . '\': ' . mysql_error() . '<br/><br/>');
+					$result=$this->mySql->query($templine);// or print('Error ejecutando consulta \'<strong>' . $templine . '\': ' . mysql_error() . '<br/><br/>');
 					if(!$result){
 						$respuesta= false;
 						break;
@@ -238,9 +238,9 @@ class Backup{
 		}
 	}
 	public function maxId(){
-		if($this->conectar->con()==true){
+		if($this->mySql==true){
 			$query="select max(idbackup) as id from backups";
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{

@@ -1,5 +1,5 @@
-<?
-include_once('classUsuario.php');
+<?php
+include_once('Usuario.php');
 class VistaMisInvitados{
 	
 	private $usuario;
@@ -7,8 +7,8 @@ class VistaMisInvitados{
 	private $user;
 	
 	public function __construct(){
-		$this->usuario=new classUsuario();
-		$this->usuario2=new classUsuario();		
+		$this->usuario=new Usuario();
+		$this->usuario2=new Usuario();		
 		$this->user=$_POST['usuario'];
 	}
 	public function paginar(){

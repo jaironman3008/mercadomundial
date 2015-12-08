@@ -1,5 +1,5 @@
-<?
-include_once('classUsuario.php');
+<?php
+include_once('Usuario.php');
 
 class VistaUsuario{
 
@@ -21,8 +21,8 @@ class VistaUsuario{
 	public function __construct(){
 	
 		$this->user=$_POST['usuario'];
-		$this->usuario=new classUsuario();			
-		$this->usuario2=new classUsuario();			
+		$this->usuario=new Usuario();			
+		$this->usuario2=new Usuario();			
 		$this->pag=$_GET['pag'];
 		$this->registrosAMostrar=10;
 		

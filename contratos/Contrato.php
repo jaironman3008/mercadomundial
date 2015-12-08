@@ -1,33 +1,29 @@
 <?php
-include_once('../DBManager.php');
+include_once(MAINPATH.'/DBManager.php');
 
-Class Contrato{
-	private $conectar;
-	private $mysqli;
-
+Class Contrato extends DBManager
+{
 	public function __construct()
 	{
-		$this->conectar = new Conectar();
-		$this->mysqli = $this->conectar->con();
-
+		parent::__construct();
 	}
-	
+
 	public function insertContrato($texto)
 	{
+		$query = "insert into contratos(texto,fechareg,horareg) values('" . htmlentities($texto) . "',now(),now())";
 
-		$query = "insert into contratos(texto,fechareg,horareg) values('".htmlentities($texto)."',now(),now())";
-
-		$result = $this->mysqli->query($query);
+		$result = $this->mySql->query($query);
 
 		if (!$result)
 			return false;
 		else
 			return true;
-
 	}
-	public function getContrato(){
+
+	public function getContrato()
+	{
 		$query = "select * from contratos order by idcontrato desc limit 1";
-		$result = $this->mysqli->query($query);
+		$result = $this->mySql->query($query);
 		if (!$result)
 			return false;
 		else
@@ -39,4 +35,5 @@ Class Contrato{
 			return $resp;
 		}
 	}
+
 }

@@ -124,6 +124,9 @@ class ArticuloDominio{
 	public function getMonedas(){
 		return $this->articulo->getMonedas();
 	}
+	public function getCountArticulosByUserId($userId){
+		return $this->articulo->getCountArticulosByUserId($userId);
+	}
 	public function getCountMisArticulos($usuario){
 		$idUsuario=self::getId($usuario);
 		return $this->articulo->getCountMisArticulos($idUsuario[0]['idusuario']);

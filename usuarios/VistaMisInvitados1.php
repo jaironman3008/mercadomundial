@@ -1,6 +1,6 @@
 <?php
 // session_start();
-include_once('classUsuario.php');
+include_once('Usuario.php');
 class VistaMisInvitados{
 	public function __construct(){
 		
@@ -10,8 +10,8 @@ class VistaMisInvitados{
 	}
 	
 }
-$objetousuario=new classUsuario();
-$objetousuario2=new classUsuario();
+$objetousuario=new Usuario();
+$objetousuario2=new Usuario();
 $usuario=$_POST['usuario'];
 $vista=$_POST['vista'];if($vista=='')$vista=$_GET['vista'];
 $porusuario=$_POST['porusuario'];if($porusuario=='')$porusuario=$_GET['porusuario'];

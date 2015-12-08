@@ -1,17 +1,17 @@
 <?php 
-include_once('../DBManager.php');
+include_once(MAINPATH.'/DBManager.php');
 require_once('jpgraph-3.5.0b1/src/jpgraph.php');
 require_once('jpgraph-3.5.0b1/src/jpgraph_line.php');
-include_once('classAnalisis.php');
+include_once('Analisis.php');
 
 
-class classgrafico{
+class classgrafico extends DBManager{
 
 	public function __construct(){
-		
+		parent::__construct();
 	}
 	public function graficofecha($gestion){
-		if(Conectar::con()){
+		if($this->mySql==true){
 			//$gestion='2013';
 			$objetoanalisis=new classAnalisis();
 			$anio=$gestion;

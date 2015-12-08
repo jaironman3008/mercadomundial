@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('../presentacion/ValidarForm.php');
 include_once('ArticuloDominio.php');
 
@@ -70,7 +71,9 @@ class FrmNuevoArticulo{
 				</table>
 			</form>
 		";
-		$curStock=$this->articuloDominio->getCountMisArticulos($this->curUser);
+		// $curStock=$this->articuloDominio->getCountMisArticulos($this->curUser);
+		$curStock=$this->articuloDominio->getCountArticulosByUserId($this->curUser);
+		echo "<pre>";var_dump($curStock,$this->curUser,$_SESSION["autentica"]);exit;
 		/*if(count($curStock)<=20)
 			echo $html;
 		else

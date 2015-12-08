@@ -1,15 +1,14 @@
-<?
-include_once('../DBManager.php');
-class Consulta{
+<?php
+include_once(MAINPATH.'/DBManager.php');
+class Consulta extends DBManager{
 	
-	private $conectar;
 	private $lista;	
 	private $listaConsultas;
 	private $listaConsultas1;
 	private $listaConsultas2;
 	
 	public function __construct(){
-		$this->conectar= new Conectar();
+		parent::__construct();
 		$this->lista= array();
 		$this->listaConsultas=array();
 		$this->listaConsultas1=array();
@@ -17,16 +16,16 @@ class Consulta{
 	}
 	
 	public function paginarConsultas($RegistrosAEmpezar, $RegistrosAMostrar,$usuario){
-		if($this->conectar->con()==true){
+		if($this->mySql){
 			
 			$query="select * 
 					from consultas 
 					where sendTo='$usuario' order by idconsulta desc limit $RegistrosAEmpezar, $RegistrosAMostrar";
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
-				while($reg=mysql_fetch_assoc($result)){
+				while($reg=$result->fetch_assoc()){
 					$this->listaConsultas1[]=$reg;
 				}
 				return $this->listaConsultas1;
@@ -35,16 +34,16 @@ class Consulta{
 	}
 	
 	public function selectConsultas($usuario){
-		if($this->conectar->con()==true){
+		if($this->mySql){
 			
 			$query="select * 
 					from consultas 
 					where sendTo='$usuario'";
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
-				while($reg=mysql_fetch_assoc($result)){
+				while($reg=$result->fetch_assoc()){
 					$this->listaConsultas2[]=$reg;
 				}
 				return $this->listaConsultas2;
@@ -53,15 +52,15 @@ class Consulta{
 	}
 	
 	public function getReceptor(){
-		if($this->conectar->con()==true){
+		if($this->mySql){
 			$query="select idusuario, usuario 
 					from  usuarios
 					where usuario!='jair' and rol='superadmin' or rol='admin' order by idusuario asc";
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
-				while($reg=mysql_fetch_assoc($result)){
+				while($reg=$result->fetch_assoc()){
 					$this->lista[]=$reg;
 				}
 				return $this->lista;
@@ -70,13 +69,13 @@ class Consulta{
 	}
 	
 	public function getConsultas(){
-		if($this->conectar->con()==true){
+		if($this->mySql==true){
 			$query="select * from consultas order by idconsulta desc";
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
-				while($reg=mysql_fetch_assoc($result)){
+				while($reg=$result->fetch_assoc()){
 					$this->listaConsultas[]=$reg;					
 				}
 				return $this->listaConsultas;
@@ -86,7 +85,7 @@ class Consulta{
 	
 	public function guardarNuevaConsulta($sendFrom,$consulta){
 	
-		if($this->conectar->con()==true){
+		if($this->mySql){
 			$listaReceptor=self::getReceptor();
 			$listaConsulta=self::getConsultas();
 			
@@ -106,7 +105,7 @@ class Consulta{
 			
 			$query="insert into consultas(consulta,fechareg,horareg,sendFrom,sendTo)
 					values('$consulta',now(),now(),'$sendFrom','$receptor')";
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			
 			if(!$result)
 				return false;

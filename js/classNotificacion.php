@@ -1,6 +1,6 @@
-<?
-include_once('DBManager.php');
-class Notificacion{
+<?php
+include_once(MAINPATH.'/DBManager.php');
+class Notificacion extends  DBManager{
 
 	private $misclientes;
 	
@@ -8,7 +8,7 @@ class Notificacion{
 		$this->misclientes=array();
 	}
 	public function misclientes($usuario,$from){
-		if(Conectar::con()==true){
+		if($this->mySql==true){
 			$swuser="and usuario='$usuario'";
 			if($usuario=='')$swuser='';
 			switch($from){
@@ -66,11 +66,11 @@ class Notificacion{
 											v.estado!='en proceso'";
 			}
 			
-			$result=mysql_query($query);
+			$result=$this->mySql->query($query);
 			if(!$result)
 				return false;
 			else{
-				while($reg=mysql_fetch_assoc($result)){
+				while($reg = $result->fetch_assoc()){
 					$this->misclientes[]=$reg;
 				}
 				return $this->misclientes;

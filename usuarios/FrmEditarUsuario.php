@@ -1,5 +1,5 @@
 <?
-include_once('classUsuario.php');
+include_once('Usuario.php');
 include_once('../presentacion/ValidarForm.php');
 class VerUsuario{
 		
@@ -13,9 +13,9 @@ class VerUsuario{
 	private $openFrom;	
 
     public function __construct(){
-		$this->usuario=new classUsuario();
-		$this->usuario2=new classUsuario();
-		$this->usuario3=new classUsuario();
+		$this->usuario=new Usuario();
+		$this->usuario2=new Usuario();
+		$this->usuario3=new Usuario();
 		$this->curUser=$_POST['curUser'];
 		$this->userToEdit=$_POST['userToEdit'];	
 		$this->vista=$_POST['vista'];
@@ -202,7 +202,7 @@ class VerUsuario{
 			
 			for($i=$desde;$i<6;$i++){
 				
-				$this->usuario2=new classUsuario();
+				$this->usuario2=new Usuario();
 				$padre=$this->usuario2->returnUsuario($hijo);//OBTENGO EL ANFITRION
 				$user=$this->usuario2->returnUsuario($padre[0]['idusuario']);//OBTENGO AL USUARIO
 				if($padre[0]['usuario']=='eliseosuper'){

@@ -1,5 +1,5 @@
 <?php
-include_once('classUsuario.php');
+include_once('Usuario.php');
 // session_start();
 class ValidateNewUser{
 	
@@ -17,7 +17,7 @@ class ValidateNewUser{
 		$this->passlength=$_POST['passlength'];
 		$this->pass1=$_POST['pass1'];
 		$this->pass2=$_POST['pass2'];
-		$this->usuario= new classUsuario();
+		$this->usuario= new Usuario();
 	
 	}
 	

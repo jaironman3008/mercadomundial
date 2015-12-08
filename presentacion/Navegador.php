@@ -1,34 +1,43 @@
 <?php
-class Navegador{
+include_once (MAINPATH . "/DominioManage.php");
+class Navegador extends DominioManage
+{
 
 	private $rolUsuario;
 	private $usuarioActual;
 	private $idUsuarioActual;
 	private $autentica;
-	
-	public function __construct(){
-		$this->rolUsuario=isset($_SESSION['rolusuario'])?$_SESSION['rolusuario']:"";
-		$this->usuarioActual=isset($_SESSION['usuarioactual'])?$_SESSION['usuarioactual']:"";
-		$this->idUsuarioActual=isset($_SESSION['idusuarioactual'])?$_SESSION['idusuarioactual']:"";
-		$this->autentica=isset($_SESSION["autentica"])?$_SESSION["autentica"]:"";
+
+	public function __construct()
+	{
+		$this->rolUsuario = $this->session("rolusuario");
+		$this->usuarioActual = $this->session("usuarioactual");
+		$this->idUsuarioActual = $this->session("idusuarioactual");
+		$this->autentica = $this->session("autentica");
 	}
-	
-	public function imprimirNavegador(){
-			$retornar="";
-		if( $this->autentica== "SIP"){
-			$retornar="<div id='navegador'>";
-			$retornar.="<a id='linkInicio' href='javascript: void()'>Inicio </a>.::.						
+
+	public function imprimirNavegador()
+	{
+		$retornar = "";
+		var_dump($this->autentica);
+		exit ;
+		if ($this->autentica == "SIP")
+		{
+			$retornar = "<div id='navegador'>";
+			$retornar .= "<a id='linkInicio' href='javascript: void()'>Inicio </a>.::.						
 						<a id='linkConsultas' href='javascript:void()'>Consultas </a>.::.
 						<a id='linkPreguntasFrecuentes' href='javascript:void()'>Preguntas frecuentes </a>.::.
-						<font id='usuarioActual'>".$this->usuarioActual."</font>@<font id='rolUsuario'>".$this->rolUsuario."</font> .::.
-						<span id='idUsuarioActual' style='display:none'>".$this->idUsuarioActual."</span>
+						<font id='usuarioActual'>" . $this->usuarioActual . "</font>@<font id='rolUsuario'>" . $this->rolUsuario . "</font> .::.
+						<span id='idUsuarioActual' style='display:none'>" . $this->idUsuarioActual . "</span>
 						<a id='linkCerrarSesion' href='javascript: void();'> Cerrar Sesion</a>
 						
 						";
-			$retornar.="</div>";
-			
+			$retornar .= "</div>";
+
 		}
-		else $retornar.="<br>";
+		else
+			$retornar .= "<br>";
 		return $retornar;
-	}	
+	}
+
 }

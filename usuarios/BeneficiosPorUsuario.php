@@ -1,5 +1,5 @@
-<?
-include_once('classUsuario.php');
+<?php
+include_once('Usuario.php');
 
 class BeneficiosPorUsuario{
 	
@@ -8,7 +8,7 @@ class BeneficiosPorUsuario{
 	private $user;
 	
 	public function __construct(){
-		$this->usuario=new classUsuario();		
+		$this->usuario=new Usuario();		
 		$this->user=$_POST['usuario'];		
 	}
 
@@ -97,7 +97,7 @@ class BeneficiosPorUsuario{
 			
 			for($i=$desde;$i<6;$i++){
 				
-				$this->usuario2=new classUsuario();
+				$this->usuario2=new Usuario();
 				$padre=$this->usuario2->returnUsuario($hijo);//OBTENGO EL ANFITRION
 				$user=$this->usuario2->returnUsuario($padre[0]['idusuario']);//OBTENGO AL USUARIO
 				if($padre[0]['usuario']=='eliseosuper'){
